@@ -6,11 +6,11 @@ import (
 	"testing"
 )
 
-const address = "localhost"
-const port = "8000"
+const testAddress = "localhost"
+const testPort = "8000"
 
 func TestConnection(t *testing.T) {
-	go listen()
+	go listen(testAddress, testPort)
 	conn, _ := buildTestConnection(t)
 
 	if conn != nil {
@@ -20,7 +20,7 @@ func TestConnection(t *testing.T) {
 }
 
 func buildTestConnection(t *testing.T) (net.Conn, error) {
-	conn, err := net.Dial("tcp", fmt.Sprintf("%s:%s", address, port))
+	conn, err := net.Dial("tcp", fmt.Sprintf("%s:%s", testAddress, testPort))
 	if err != nil {
 		t.Errorf("server connection failed: %v", err)
 	}

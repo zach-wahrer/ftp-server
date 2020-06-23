@@ -2,12 +2,16 @@
 package server
 
 import (
+	"fmt"
 	"log"
 	"net"
 )
 
-func listen() {
-	listener, err := net.Listen("tcp", "localhost:8000")
+const address = "localhost"
+const port = "8000"
+
+func listen(address, port string) {
+	listener, err := net.Listen("tcp", fmt.Sprintf("%s:%s", address, port))
 	if err != nil {
 		log.Fatal(err)
 	}
