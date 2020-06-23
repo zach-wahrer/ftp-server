@@ -3,6 +3,7 @@ package server
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"net"
 )
@@ -26,5 +27,10 @@ func listen(address, port string) {
 }
 
 func handleConn(c net.Conn) {
+	defer c.Close()
+	reply := "Welcome!\n"
+	if _, err := io.WriteString(c, reply); err != nil {
+		log.Print(err)
+	}
 
 }
