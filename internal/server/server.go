@@ -17,6 +17,10 @@ func listen() {
 			log.Print(err)
 			continue
 		}
-		defer conn.Close()
+		handleConn(conn)
 	}
+}
+
+func handleConn(c net.Conn) {
+
 }
