@@ -6,6 +6,7 @@ import (
 )
 
 func TestConnection(t *testing.T) {
+	go listen()
 	conn, err := net.Dial("tcp", "localhost:8000")
 	if err != nil {
 		t.Errorf("server connection failed: %v", err)
