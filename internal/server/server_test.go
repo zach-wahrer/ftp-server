@@ -4,29 +4,27 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"math/rand"
 	"net"
+	"os"
 	"testing"
 	"time"
 )
 
 const testAddress = "localhost"
+const testPort = "8000"
 
-func TestConnection(t *testing.T) {
-	testPort := randPort()
+func TestMain(m *testing.M) {
 	go listen(testAddress, testPort)
-	conn, _ := buildTestConnection(t, testPort)
-	t.Logf("%v", conn.RemoteAddr())
-	defer conn.Close()
-
+	time.Sleep(100 * time.Millisecond)
+	code := m.Run()
+	os.Exit(code)
 }
 
 func TestHandlerReturn(t *testing.T) {
-	testPort := randPort()
-	time.Sleep(1000 * time.Millisecond)
-	go listen(testAddress, testPort)
-	conn, _ := buildTestConnection(t, testPort)
-	t.Logf("%v", conn.RemoteAddr())
+	conn, err := createTestConnection(t, testPort)
+	if err != nil {
+		t.Fatal(err)
+	}
 	defer conn.Close()
 
 	reply := new(bytes.Buffer)
@@ -40,20 +38,6 @@ func TestHandlerReturn(t *testing.T) {
 
 }
 
-func buildTestConnection(t *testing.T, testPort string) (net.Conn, error) {
-	conn, err := net.Dial("tcp", fmt.Sprintf("%s:%s", testAddress, testPort))
-	if err != nil {
-		t.Fatal(err)
-	}
-	return conn, nil
-}
-
-func randPort() string {
-	rand.Seed(time.Now().UnixNano())
-	for {
-		port := rand.Intn(10000)
-		if port > 5000 {
-			return fmt.Sprintf("%d", port)
-		}
-	}
+func createTestConnection(t *testing.T, testPort string) (net.Conn, error) {
+	return net.Dial("tcp", fmt.Sprintf("%s:%s", testAddress, testPort))
 }
