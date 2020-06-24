@@ -4,10 +4,16 @@ package ui
 // RunCommand runs the input string on the ftp-server
 func RunCommand(cmd string) string {
 	switch cmd {
+	case "welcome":
+		return printWelcome() + printHelp()
 	case "help":
 		return printHelp()
 	}
 	return ""
+}
+
+func printWelcome() string {
+	return "Welcome!\n"
 }
 
 func printHelp() string {
