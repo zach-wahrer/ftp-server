@@ -3,6 +3,17 @@ package ui
 
 // RunCommand runs the input string on the ftp-server
 func RunCommand(cmd string) string {
-
+	switch cmd {
+	case "help":
+		return printHelp()
+	}
 	return ""
+}
+
+func printHelp() string {
+	return "Available Commands:\n" +
+		"\t'cd' - change directory\n" +
+		"\t'ls' - list files\n" +
+		"\t'get {filename}' - download file\n" +
+		"\t'put {filename}' - upload local file"
 }
