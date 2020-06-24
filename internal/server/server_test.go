@@ -20,7 +20,7 @@ func TestMain(m *testing.M) {
 	os.Exit(code)
 }
 
-func TestHandlerReturn(t *testing.T) {
+func TestConnectionAndHandlerReturn(t *testing.T) {
 	conn, err := createTestConnection(t, testPort)
 	if err != nil {
 		t.Fatal(err)
