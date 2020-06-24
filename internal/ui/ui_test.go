@@ -12,7 +12,7 @@ func TestMain(m *testing.M) {
 
 func TestOnInitialConnectionOutput(t *testing.T) {
 	reply := RunCommand("welcome")
-	expected := "Welcome!\n" +
+	expected := "Welcome to the Go ftp-server!\n" +
 		"Available Commands:\n" +
 		"\t'cd' - change directory\n" +
 		"\t'ls' - list files\n" +

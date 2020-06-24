@@ -1,6 +1,8 @@
 // Package ui provides user interface functions for ftp-server
 package ui
 
+const ServerWelcome = "Welcome to the Go ftp-server!\n"
+
 // RunCommand runs the input string on the ftp-server
 func RunCommand(cmd string) string {
 	switch cmd {
@@ -13,7 +15,7 @@ func RunCommand(cmd string) string {
 }
 
 func printWelcome() string {
-	return "Welcome!\n"
+	return ServerWelcome
 }
 
 func printHelp() string {
