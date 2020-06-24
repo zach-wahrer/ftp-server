@@ -9,7 +9,7 @@ import (
 	"net"
 )
 
-func listen(address, port string) {
+func Listen(address, port string) {
 	listener, err := net.Listen("tcp", fmt.Sprintf("%s:%s", address, port))
 	if err != nil {
 		log.Fatal(err)

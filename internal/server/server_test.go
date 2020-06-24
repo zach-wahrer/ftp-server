@@ -15,7 +15,7 @@ const testAddress = "localhost"
 const testPort = "8000"
 
 func TestMain(m *testing.M) {
-	go listen(testAddress, testPort)
+	go Listen(testAddress, testPort)
 	time.Sleep(100 * time.Millisecond)
 	code := m.Run()
 	os.Exit(code)
