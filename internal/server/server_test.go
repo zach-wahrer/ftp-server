@@ -6,6 +6,7 @@ import (
 	"io"
 	"net"
 	"os"
+	"strings"
 	"testing"
 	"time"
 )
@@ -31,9 +32,10 @@ func TestConnectionAndHandlerReturn(t *testing.T) {
 	if _, err := io.Copy(reply, conn); err != nil {
 		t.Errorf("unexpected server error: %v", err)
 	}
-	expected := "Welcome!\n"
-	if reply.String() != expected {
-		t.Errorf("unexpected server reply: want \"%s\", got \"%s\"", expected, reply.String())
+	expected := "Welcome!"
+	lines := strings.Split(reply.String(), "\n")
+	if lines[0] != expected {
+		t.Errorf("unexpected server reply: want \"%s\", got \"%s\"", expected, lines[0])
 	}
 
 }
