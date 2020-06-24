@@ -8,9 +8,6 @@ import (
 	"net"
 )
 
-// const address = "localhost"
-// const port = "8000"
-
 func listen(address, port string) {
 	listener, err := net.Listen("tcp", fmt.Sprintf("%s:%s", address, port))
 	if err != nil {
